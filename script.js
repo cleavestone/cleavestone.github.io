@@ -78,7 +78,7 @@ function scrollActive() {
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.offsetTop - 100;
         const sectionId = current.getAttribute('id');
-        const link = document.querySelector('.nav-link[href*=' + sectionId + ']');
+        const link = document.querySelector('.nav-link[href="#' + sectionId + '"]');
 
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
             link?.classList.add('active');
@@ -99,18 +99,16 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Observe elements for animation
-const animateElements = document.querySelectorAll('.project-card, .skill-category, .about-card');
+const animateElements = document.querySelectorAll('.project-card, .skill-category, .about-card, .stat');
 animateElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    el.classList.add('reveal');
     observer.observe(el);
 });
 
