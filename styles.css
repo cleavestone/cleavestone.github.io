@@ -10,6 +10,7 @@
     --text-muted: #6B7280;
     --border: #1F2937;
     --accent: #FFB800;
+    --nav-bg: rgba(10, 14, 26, 0.95);
     --success: #10B981;
 }
 
@@ -26,6 +27,7 @@
     --text-muted: #9CA3AF;
     --border: #E5E7EB;
     --accent: #F59E0B;
+    --nav-bg: rgba(255, 255, 255, 0.92);
     --success: #10B981;
 }
 
@@ -59,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 14, 26, 0.95);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--border);
@@ -90,7 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .nav-link {
@@ -871,3 +873,13 @@ body {
         display: none;
     }
 }
+
+
+/* Added: active nav link, scroll reveal (keeps hover transforms working), services, alt background */
+.nav-link.active { color: var(--primary); }
+.nav-link.active::after { width: 100%; }
+.reveal { opacity: 0; }
+.reveal.visible { opacity: 1; animation: fadeInUp 0.6s ease-out backwards; }
+.alt { background: var(--bg-darker); }
+.service-text { color: var(--text-secondary); margin-bottom: 1rem; }
+.service-fit { font-size: 0.85rem; color: var(--text-muted); }
